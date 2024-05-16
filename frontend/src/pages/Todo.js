@@ -15,7 +15,7 @@ const Todo = () => {
   useEffect(() => {
     // Fetch todos from server when component mounts
     const fetchTodo = async () => {
-      const response = await fetch("/api/todo", {
+      const response = await fetch(`${process.env.REACT_APP_DEV_API}/api/todo`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       const json = await response.json();
@@ -42,7 +42,7 @@ const Todo = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`/api/todo/${editTodo._id}`, {
+      const response = await fetch(`${process.env.REACT_APP_DEV_API}/api/todo/${editTodo._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +70,7 @@ const Todo = () => {
 
   const deleteTodo = async (id) => {
     try {
-      const response = await fetch(`/api/todo/${id}`, {
+      const response = await fetch(`${process.env.REACT_APP_DEV_API}/api/todo/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${user.token}` },
       });
@@ -86,7 +86,7 @@ const Todo = () => {
 
   const handleCreate = async () => {
     try {
-      const response = await fetch("/api/todo", {
+      const response = await fetch(`${process.env.REACT_APP_DEV_API}/api/todo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

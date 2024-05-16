@@ -10,7 +10,7 @@ const userRoutes = require('./routes/user')
 // express app
 const app = express()
 
-//app.use(cors());
+app.use(cors());
 
 // middleware
 app.use(express.json())
