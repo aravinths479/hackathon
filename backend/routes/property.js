@@ -15,9 +15,7 @@ const requireAuth = require('../middleware/requireAuth');
 
 const router = express.Router();
 
-// @route    POST api/properties
-// @desc     Create a property
-// @access   Private
+
 router.get('/my-property',requireAuth,getMyProperty)
 
 router.post('/:propertyId/interest',requireAuth,sendInfoToSeller)
@@ -64,26 +62,11 @@ router.post(
   }
 );
 
-// @route    GET api/properties
-// @desc     Get all properties
-// @access   Public
 router.get('/', getProperties);
 
-// @route    GET api/properties/:id
-// @desc     Get property by ID
-// @access   Public
 router.get('/:id', getProperty);
 
-// @route    PUT api/properties/:id
-// @desc     Update property
-// @access   Private
 
-
-
-
-// @route    DELETE api/properties/:id
-// @desc     Delete property
-// @access   Private
 router.delete('/delete/:id', requireAuth, deleteProperty);
 
 module.exports = router;

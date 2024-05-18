@@ -1,6 +1,3 @@
-Here's a structured README file for your Rentify project. This README will include an overview of the project, instructions for setting up and running the application, and details about the tech stack and deployment.
-
----
 
 # Rentify - Where Renting Meets Simplicity
 
@@ -157,7 +154,3 @@ Replace `<username>` and `<password>` with your actual MongoDB Atlas credentials
 ### Conclusion
 
 Rentify aims to streamline the rental process, making it easier for both property owners and potential tenants to find suitable matches. This project utilizes the MERN stack to deliver a full-featured application with modern web development practices.
-
----
-
-This README file should help anyone understand the project, set it up locally, and know how to deploy it. Make sure to update any placeholder text (like `<username>` and `<password>`) with actual values where necessary.

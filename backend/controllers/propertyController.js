@@ -27,13 +27,13 @@ exports.createProperty = async (req, res) => {
 
 exports.getMyProperty = async (req,res)=>{
   try {
-    // Retrieve user ID from authenticated user token
+
     const userId = req.user.id;
 
-    // Fetch properties based on user ID
+
     const properties = await Property.find({ user: userId });
 
-    // Return properties as response
+
     res.json(properties);
   } catch (error) {
     console.error(error.message);
@@ -123,19 +123,18 @@ exports.deleteProperty = async (req, res) => {
 
 
 exports.sendInfoToSeller = async (req, res) => {
-  // Extract necessary information from the request
-  const { email } = req.user; // Assuming user details are available in req.user
+  
+  const { email } = req.user; 
   const propertyId = req.params.propertyId;
 
   try {
-    // Fetch property details using propertyId
+
     const property = await Property.findById(propertyId);
     console.log(property);
     if (!property) {
       return res.status(404).json({ error: "Property not found" });
     }
 
-    // Construct email content
     const emailContent = `
       <h2>Interested Buyer</h2>
       <p>The user with email ${email} is interested in buying the property:</p>
@@ -148,7 +147,7 @@ exports.sendInfoToSeller = async (req, res) => {
       <p><strong>Nearby Colleges:</strong> ${property.nearbyColleges}</p>
     `;
 
-    // Send email using mailService
+   
     await mailService.sendEmail(
       email,
       "Interest in Property",
