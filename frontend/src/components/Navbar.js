@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 
@@ -13,14 +13,22 @@ const CustomNavbar = () => {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
-      <div className="container">
-        <Navbar.Brand as={Link} to="/">Todo List</Navbar.Brand>
+    <Navbar bg="light" expand="lg" className="shadow-sm">
+      <Container>
+        <Navbar.Brand as={Link} to="/">Rentify</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
+          <Nav className="me-auto">
+            {user && user.role === 'seller' && (
+              <>
+                <Nav.Link as={Link} to="/add-property">Add Property</Nav.Link>
+                <Nav.Link as={Link} to="/my-property">My Properties</Nav.Link>
+              </>
+            )}
+          </Nav>
+          <Nav className="ms-auto">
             {user ? (
-              <NavDropdown title={user.email} id="basic-nav-dropdown">
+              <NavDropdown title={user.email} id="user-nav-dropdown" align="end">
                 <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
@@ -33,7 +41,7 @@ const CustomNavbar = () => {
             )}
           </Nav>
         </Navbar.Collapse>
-      </div>
+      </Container>
     </Navbar>
   );
 };
