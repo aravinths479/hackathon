@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSignup } from "../hooks/useSignup";
+import { Alert, Form, Button, Container } from 'react-bootstrap';
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -18,90 +19,74 @@ const Signup = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <form className="signup" onSubmit={handleSubmit}>
+    <Container className="mt-5">
+      {error && <Alert variant="danger">{error}</Alert>}
+      <Form className="signup" onSubmit={handleSubmit}>
         <h3>Sign Up</h3>
 
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email address:</label>
-          <input
+        <Form.Group controlId="email">
+          <Form.Label>Email address:</Form.Label>
+          <Form.Control
             type="email"
-            className="form-control"
-            id="email"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
-            required
           />
-        </div>
+        </Form.Group>
 
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password:</label>
-          <input
+        <Form.Group controlId="password">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
             type="password"
-            className="form-control"
-            id="password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
-            required
           />
-        </div>
+        </Form.Group>
 
-        <div className="mb-3">
-          <label htmlFor="firstName" className="form-label">First Name:</label>
-          <input
+        <Form.Group controlId="firstName">
+          <Form.Label>First Name:</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
-            id="firstName"
             onChange={(e) => setFirstName(e.target.value)}
             value={firstName}
-            required
           />
-        </div>
+        </Form.Group>
 
-        <div className="mb-3">
-          <label htmlFor="lastName" className="form-label">Last Name:</label>
-          <input
+        <Form.Group controlId="lastName">
+          <Form.Label>Last Name:</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
-            id="lastName"
             onChange={(e) => setLastName(e.target.value)}
             value={lastName}
-            required
           />
-        </div>
+        </Form.Group>
 
-        <div className="mb-3">
-          <label htmlFor="phone" className="form-label">Phone:</label>
-          <input
+        <Form.Group controlId="phone">
+          <Form.Label>Phone:</Form.Label>
+          <Form.Control
             type="text"
-            className="form-control"
-            id="phone"
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
-            required
           />
-        </div>
+        </Form.Group>
 
-        <div className="mb-3">
-          <label htmlFor="role" className="form-label">Role:</label>
-          <select
-            className="form-select"
-            id="role"
+        <Form.Group controlId="role">
+          <Form.Label>Role:</Form.Label>
+          <Form.Control
+            as="select"
             onChange={(e) => setRole(e.target.value)}
             value={role}
-            required
           >
             <option value="buyer">Buyer</option>
             <option value="seller">Seller</option>
-          </select>
-        </div>
+          </Form.Control>
+        </Form.Group>
+        <br />
 
-        <button type="submit" className="btn btn-primary" disabled={isLoading}>
-          Sign up
-        </button>
-        {error && <div className="error mt-3">{error}</div>}
-      </form>
-    </div>
+        <Button type="submit" variant="primary" disabled={isLoading}>
+          {isLoading ? 'Signing up...' : 'Sign up'}
+        </Button>
+      </Form>
+    </Container>
   );
 };
 

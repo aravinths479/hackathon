@@ -15,6 +15,7 @@ const Login = () => {
 
   return (
     <Container className="mt-5">
+     {error && <Alert variant="danger">{error}</Alert>}
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <Form onSubmit={handleSubmit}>
@@ -27,7 +28,7 @@ const Login = () => {
                 placeholder="Enter email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
+                
               />
             </Form.Group>
 
@@ -38,7 +39,7 @@ const Login = () => {
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
+                
               />
             </Form.Group>
 
@@ -46,7 +47,7 @@ const Login = () => {
               Log in
             </Button>
 
-            {error && <Alert variant="danger">{error}</Alert>}
+           
           </Form>
         </Col>
       </Row>

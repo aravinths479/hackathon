@@ -40,7 +40,7 @@ function App() {
               path="/my-property" 
               element={isSeller() ? <MyProperties /> : <Navigate to="/" />} 
             />
-            <Route path="/property/:propertyId" element={<PropertyDetails />} />
+            <Route path="/property/:propertyId" element={!isSeller() ? <PropertyDetails /> : <Navigate to="/" /> } />
             <Route 
               path="/profile" 
               element={user ? <Profile /> : <Navigate to="/login" />} 

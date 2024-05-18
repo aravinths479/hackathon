@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Container, Row, Col, Form, Pagination } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const PropertyList = () => {
+
+  const { user } = useAuthContext();
+
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -106,10 +110,11 @@ const PropertyList = () => {
     <Container className="mt-5">
       <center><h2>Properties</h2></center>
       <br />
-      <h3>Filters</h3>
       <Row>
         {/* Filter Form Column */}
+      {user.role == "buyer" && (
         <Col md={3}>
+      <h3>Filters</h3>
           <Form className="mb-4">
             <Form.Group controlId="filterPlace">
               <Form.Label>Place</Form.Label>
@@ -146,6 +151,9 @@ const PropertyList = () => {
           </Form>
         </Col>
 
+      )}
+
+
         {/* Property Cards Column */}
         <Col md={9}>
           <Row xs={1} md={2} lg={2} xl={3} className="g-4">
@@ -169,7 +177,10 @@ const PropertyList = () => {
                       <i className="bi bi-heart">Likes: </i> {property.likes}
                     </Button>
                     {/* View Details Button */}
+                    {user.role == "buyer" && (
+
                     <Link to={`/property/${property._id}`} className="btn btn-primary">View Details</Link>
+                    )}
                   </Card.Body>
                 </Card>
               </Col>
